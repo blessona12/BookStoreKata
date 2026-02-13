@@ -37,4 +37,12 @@ public class PricingServiceTest {
         assertEquals(50.0,total);
     }
 
+    @Test
+    void shouldApplyFivePercentDiscountForTwoDifferentBooks()
+    {
+        Map<BookType, Integer> cart= Map.of(BookType.CLEAN_CODE,1,BookType.CLEAN_ARCHITECTURE,1);
+        double total = pricingService.calculate(cart);
+        assertEquals(95.0,total);
+    }
+
 }
