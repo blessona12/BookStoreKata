@@ -12,7 +12,7 @@ public class PricingService {
         if (cart == null || cart.isEmpty()) {
             return 0.0;
         }
-        return 0.0;
+        return cart.values().stream().mapToInt(Integer::intValue).sum()*50.0;
     }
 
 }

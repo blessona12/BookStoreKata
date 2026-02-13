@@ -33,7 +33,7 @@ public class PricingServiceTest {
     {
         Map<BookType, Integer> cart = Map.of(BookType.CLEAN_CODE,1);
 
-        double total = pricingService.calculate(cart));
+        double total = pricingService.calculate(cart);
         assertEquals(50.0,total);
     }
 
