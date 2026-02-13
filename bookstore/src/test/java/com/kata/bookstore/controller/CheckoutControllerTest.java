@@ -4,11 +4,16 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class CheckoutControllertest {
+public class CheckoutControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -24,10 +29,12 @@ public class CheckoutControllertest {
             { "book": "CLEAN_CODER", "quantity": 1 }
           ]
         }""";
-        mockMvc.perform(post("/api/checkout")).contentType(MediaType.APPLICATION_JSON)
-            .content(request))
+
+        mockMvc.perform(post("/api/checkout")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(request))
                 .andExpect(status().isOk())
-            .andExpect(jsonPath("$.total").value(95.0));
+                .andExpect(jsonPath("$.total").value(95.0));
 
     }
 }
