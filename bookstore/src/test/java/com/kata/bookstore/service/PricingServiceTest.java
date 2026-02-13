@@ -45,4 +45,16 @@ public class PricingServiceTest {
         assertEquals(95.0,total);
     }
 
+    @Test
+    void shouldReturnDifferentDiscountsForComplexCart()
+    {
+        Map<BookType,Integer> cart = Map.of(BookType.CLEAN_CODE, 2,
+                BookType.CLEAN_CODER, 2,
+                BookType.CLEAN_ARCHITECTURE, 2,
+                BookType.TDD, 1,
+                BookType.LEGACY_CODE, 1);
+
+        assertEquals(320.0,pricingService.calculate(cart));
+    }
+
 }

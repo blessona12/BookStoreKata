@@ -31,8 +31,6 @@ public class PricingService {
         optimize(groups);
 
         return groups.stream().mapToDouble(this::groupSize).sum();
-
-        return cart.values().stream().mapToInt(Integer::intValue).sum()*50.0;
     }
 
     private double groupSize(int size)
@@ -40,6 +38,16 @@ public class PricingService {
         double subtotal = size *50.0;
         double discount= DISCOUNTS.getOrDefault(size,0.0);
         return subtotal * (1- discount);
+    }
+
+    private void optimize(List<Integer> groups) {
+
+        while (groups.contains(5) && groups.contains(3)) {
+            groups.remove(Integer.valueOf(5));
+            groups.remove(Integer.valueOf(3));
+            groups.add(4);
+            groups.add(4);
+        }
     }
 
 }
