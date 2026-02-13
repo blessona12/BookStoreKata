@@ -37,4 +37,21 @@ public class CheckoutControllerTest {
                 .andExpect(jsonPath("$.total").value(95.0));
 
     }
+
+    @Test
+    void shouldReturnBadRequestWhenQuantityIsZero() throws Exception {
+
+        String request = """
+    {
+      "items": [
+        { "book": "CLEAN_CODE", "quantity": 0 }
+      ]
+    }
+    """;
+
+        mockMvc.perform(post("/api/checkout")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(request))
+                .andExpect(status().isBadRequest());
+    }
 }
