@@ -12,7 +12,7 @@
 	<artifactId>bookstore</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>bookstore</name>
-	<description>BookStore Kata using TDD design</description>
+	<description>BookStore kata demo project</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -27,7 +27,7 @@
 		<url/>
 	</scm>
 	<properties>
-		<java.version>25</java.version>
+		<java.version>21</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
