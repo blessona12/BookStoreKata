@@ -1,5 +1,6 @@
 package com.kata.bookstore.service;
 
+import com.kata.bookstore.config.DiscountProperties;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -9,6 +10,12 @@ import java.util.Map;
 
 @Service
 public class PricingService {
+
+    private final DiscountProperties properties;
+
+    public PricingService(DiscountProperties properties) {
+        this.properties = properties;
+    }
 
     private static final Map<Integer,Double> DISCOUNTS=Map.of(2,0.05,3,0.10,4,0.20,5,0.25);
 
@@ -36,7 +43,7 @@ public class PricingService {
     private double groupSize(int size)
     {
         double subtotal = size *50.0;
-        double discount= DISCOUNTS.getOrDefault(size,0.0);
+        double discount= properties.getDiscounts().getOrDefault(size,0.0);
         return subtotal * (1- discount);
     }
 
